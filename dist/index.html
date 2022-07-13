@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Pixel Earth in Three.JS</title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div id="canvas"></div>
+
+<script>
+  (function(){var script=document.createElement('script');script.onload=function(){var stats=new Stats();document.body.appendChild(stats.dom);requestAnimationFrame(function loop(){stats.update();requestAnimationFrame(loop)});};script.src='//rawgit.com/mrdoob/stats.js/master/build/stats.min.js';document.head.appendChild(script);})()
+</script>
+<script id="vertexShader" type="x-shader/x-vertex">
+  varying vec3 vNormal; void main() { vNormal = normalize( normalMatrix * normal ); gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 ); }
+</script>
+<script id="fragmentShader" type="x-shader/x-vertex">
+  varying vec3 vNormal; void main() { float intensity = pow( 0.7 - dot( vNormal, vec3( 0.0, 0.0, 1.0 ) ), 4.0 ); gl_FragColor = vec4( 0.0, 0.3, 1.0, 1.0 ) * intensity; }
+</script>
+<!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/three.js/r77/three.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/seedrandom/2.4.2/lib/alea.js'></script>
+<script src='https://codepen.io/FRADAR/pen/VwpRgjx.js'></script>
+<script src='https://cdn.rawgit.com/jwagner/simplex-noise.js/87440528bcf8ec89840e974d8f76cfe3da548c37/simplex-noise.min.js'></script><script  src="./script.js"></script>
+
+</body>
+</html>
